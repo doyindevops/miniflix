@@ -1,0 +1,24 @@
+NAMESPACE            NAME                                                READY   STATUS    RESTARTS         AGE
+argocd               argocd-application-controller-0                     1/1     Running   1                5d
+argocd               argocd-applicationset-controller-6799596c7c-nsg45   1/1     Running   11 (3m32s ago)   5d
+argocd               argocd-dex-server-5cb8756cf7-fzgjk                  1/1     Running   1 (20m ago)      5d
+argocd               argocd-notifications-controller-5cd8948d4b-r99ms    1/1     Running   3                5d
+argocd               argocd-redis-59784bcdb7-kw688                       1/1     Running   1 (20m ago)      5d
+argocd               argocd-repo-server-6868bb7494-6wmrs                 0/1     Unknown   1                5d
+argocd               argocd-server-7488fb8dbf-vtwnq                      1/1     Running   1                5d
+ingress-nginx        ingress-nginx-controller-589b66c8-lrxmv             1/1     Running   2 (17m ago)      5d14h
+kube-system          coredns-7d764666f9-gk2v2                            1/1     Running   1 (20m ago)      5d14h
+kube-system          coredns-7d764666f9-mjwmc                            1/1     Running   1 (20m ago)      5d14h
+kube-system          etcd-miniflix-control-plane                         1/1     Running   1 (20m ago)      5d14h
+kube-system          kindnet-gg52z                                       1/1     Running   1                5d14h
+kube-system          kube-apiserver-miniflix-control-plane               1/1     Running   1 (20m ago)      5d14h
+kube-system          kube-controller-manager-miniflix-control-plane      1/1     Running   4 (19m ago)      5d14h
+kube-system          kube-proxy-ssqcf                                    1/1     Running   1                5d14h
+kube-system          kube-scheduler-miniflix-control-plane               1/1     Running   4 (18m ago)      5d14h
+local-path-storage   local-path-provisioner-7cd4f7d7f-vz5l2              1/1     Running   2 (17m ago)      5d14h
+miniflix             hello-miniflix-5b8f96cc77-5jj8b                     1/1     Running   1 (20m ago)      5d
+miniflix             hello-miniflix-5b8f96cc77-bv67s                     1/1     Running   1 (20m ago)      5d
+NAME               CLASS   HOSTS            ADDRESS     PORTS   AGE
+miniflix-ingress   nginx   miniflix.local   localhost   80      5d
+NAME             TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+hello-miniflix   ClusterIP   10.96.134.11   <none>        80/TCP    5d
