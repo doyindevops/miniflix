@@ -1,5 +1,9 @@
 resources:
   - namespace.yaml
-  - hello-deployment.yaml
-  - hello-service.yaml
-  - hello-ingress.yaml
+  - frontend-configmap.yaml
+  - frontend-deployment.yaml
+  - frontend-service.yaml
+  - catalog-configmap.yaml
+  - catalog-deployment.yaml
+  - catalog-service.yaml
+  - miniflix-ingress.yamll

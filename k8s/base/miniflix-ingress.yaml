@@ -9,10 +9,17 @@ spec:
     - host: miniflix.local
       http:
         paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: miniflix-catalog
+                port:
+                  number: 80
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: hello-miniflix
+                name: miniflix-frontend
                 port:
                   number: 80

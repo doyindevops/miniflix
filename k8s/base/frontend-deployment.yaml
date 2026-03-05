@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: miniflix-frontend
+  namespace: miniflix
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: miniflix-frontend
+  template:
+    metadata:
+      labels:
+        app: miniflix-frontend
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27-alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: html
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+      volumes:
+        - name: html
+          configMap:
+            name: miniflix-frontend
+            items:
+              - key: index.html
+                path: index.html

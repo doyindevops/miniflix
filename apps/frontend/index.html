@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiniFlix</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white">
+  <!-- Top Bar -->
+  <header class="flex items-center justify-between px-6 py-4 border-b border-white/10">
+    <div class="flex items-center gap-3">
+      <div class="text-red-500 font-extrabold text-2xl tracking-wide">MINIFLIX</div>
+      <div class="hidden md:flex gap-4 text-sm text-white/80">
+        <a href="#trending" class="hover:text-white">Trending</a>
+        <a href="#popular" class="hover:text-white">Popular</a>
+        <a href="#mylist" class="hover:text-white">My List</a>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <input id="q" class="bg-white/10 rounded px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-red-500"
+             placeholder="Search titles..." />
+      <button id="btn" class="bg-red-600 hover:bg-red-700 rounded px-4 py-2 text-sm font-semibold">
+        Search
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="px-6 py-10 md:py-14 bg-gradient-to-b from-white/10 to-black">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">
+          A Netflix-style app.<br/>
+          Built with <span class="text-red-500">Kubernetes</span> + <span class="text-red-500">GitOps</span>.
+        </h1>
+        <p class="mt-4 text-white/80 leading-relaxed">
+          This is MiniFlix MVP: UI + Catalog API behind an Ingress, deployed and kept in sync by Argo CD.
+        </p>
+        <div class="mt-6 flex gap-3">
+          <a href="#trending" class="bg-white text-black rounded px-5 py-3 text-sm font-semibold hover:bg-white/90">
+            Browse
+          </a>
+          <a href="/api/movies" class="bg-white/10 border border-white/15 rounded px-5 py-3 text-sm font-semibold hover:bg-white/15">
+            View API
+          </a>
+        </div>
+        <p class="mt-4 text-xs text-white/60">
+          Tip: API route is <code class="text-white/80">/api/movies</code>
+        </p>
+      </div>
+
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-5 shadow">
+        <div class="text-sm text-white/70 mb-3">Live Catalog</div>
+        <div id="grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rows -->
+  <main class="px-6 pb-16">
+    <div class="max-w-6xl mx-auto space-y-10">
+      <section id="trending">
+        <h2 class="text-xl font-bold mb-4">Trending Now</h2>
+        <div id="row1" class="flex gap-3 overflow-x-auto pb-2"></div>
+      </section>
+
+      <section id="popular">
+        <h2 class="text-xl font-bold mb-4">Popular</h2>
+        <div id="row2" class="flex gap-3 overflow-x-auto pb-2"></div>
+      </section>
+
+      <section id="mylist">
+        <h2 class="text-xl font-bold mb-4">My List (Mock)</h2>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-5 text-white/70">
+          Coming in Phase 3: login + save list + “continue watching”.
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="px-6 py-8 border-t border-white/10 text-center text-xs text-white/60">
+    Built on Kind + NGINX Ingress + Argo CD GitOps — MiniFlix MVP
+  </footer>
+
+<script>
+  const el = (id) => document.getElementById(id);
+
+  function card(m) {
+    const div = document.createElement("div");
+    div.className = "min-w-[160px] bg-white/5 border border-white/10 rounded-xl p-3 hover:bg-white/10 transition";
+    div.innerHTML = `
+      <div class="text-sm font-semibold">${m.title}</div>
+      <div class="text-xs text-white/60 mt-1">${m.year} • ${m.genre}</div>
+    `;
+    return div;
+  }
+
+  function tile(m) {
+    const div = document.createElement("div");
+    div.className = "bg-white/5 border border-white/10 rounded-xl p-3 hover:bg-white/10 transition";
+    div.innerHTML = `
+      <div class="text-sm font-semibold">${m.title}</div>
+      <div class="text-xs text-white/60 mt-1">${m.year} • ${m.genre}</div>
+    `;
+    return div;
+  }
+
+  async function load(q="") {
+    const url = q ? `/api/movies?q=${encodeURIComponent(q)}` : `/api/movies`;
+    const res = await fetch(url);
+    const data = await res.json();
+
+    el("grid").innerHTML = "";
+    el("row1").innerHTML = "";
+    el("row2").innerHTML = "";
+
+    data.slice(0, 6).forEach(m => el("grid").appendChild(tile(m)));
+    data.slice(0, 12).forEach(m => el("row1").appendChild(card(m)));
+    data.slice(6, 18).forEach(m => el("row2").appendChild(card(m)));
+  }
+
+  el("btn").addEventListener("click", () => load(el("q").value.trim()));
+  el("q").addEventListener("keydown", (e) => { if (e.key === "Enter") load(el("q").value.trim()); });
+
+  load();
+</script>
+</body>
+</html>
