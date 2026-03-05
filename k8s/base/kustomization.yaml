@@ -6,4 +6,4 @@ resources:
   - catalog-configmap.yaml
   - catalog-deployment.yaml
   - catalog-service.yaml
-  - miniflix-ingress.yamll
+  - miniflix-ingress.yaml
