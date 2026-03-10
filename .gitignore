@@ -1,0 +1,11 @@
+
+# Secrets / keys
+*.pem
+*.key
+
+# Local helper scripts (optional)
+scripts/doctor.sh
+scripts/recover.sh
+
+# Local-only Argo app
+argocd/applications/miniflix-aws.yaml
