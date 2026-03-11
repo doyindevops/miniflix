@@ -89,9 +89,9 @@ data:
             </p>
           </div>
     
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 shadow">
-            <div class="flex items-center justify-between mb-3">
-              <div class="text-sm text-white/70">Live Catalog</div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 shadow min-h-[220px]">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-sm text-white/80 font-semibold">Live Catalog</div>
               <div class="text-sm text-white/80 font-bold">MiniFlix • Adedoyin Ekong</div>
             </div>
             <div id="grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
