@@ -87,7 +87,7 @@ c<!doctype html>
           <div class="text-sm text-white/80 font-semibold">Live Catalog</div>
           <div class="text-sm text-white/80 font-bold">MiniFlix • Adedoyin Ekong</div>
         </div>
-        <div id="grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
+        <div id="tiles" class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-3"></div>
       </div>
     </div>
   </section>
@@ -152,11 +152,11 @@ c<!doctype html>
       const res = await fetch(url);
       const data = await res.json();
 
-      el("grid").innerHTML = "";
+      el("tiles").innerHTML = "";
       el("row1").innerHTML = "";
       el("row2").innerHTML = "";
 
-      data.slice(0, 6).forEach(m => el("grid").appendChild(tile(m)));
+      data.slice(0, 6).forEach(m => el("tiles").appendChild(tile(m)));
       data.slice(0, 12).forEach(m => el("row1").appendChild(card(m)));
       data.slice(6, 18).forEach(m => el("row2").appendChild(card(m)));
     }
