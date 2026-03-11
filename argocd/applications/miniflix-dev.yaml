@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/doyindevops/-MiniFlix-GitOps-Kind-.git
+    repoURL: https://github.com/doyindevops/miniflix.git
     targetRevision: main
     path: k8s/overlays/dev
   destination:
