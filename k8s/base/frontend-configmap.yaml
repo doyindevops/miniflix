@@ -24,9 +24,13 @@ data:
       <header class="flex items-center justify-between px-6 py-4 border-b border-white/10">
         <div class="flex items-center gap-4">
           <!-- Brand -->
-          <div class="flex items-baseline gap-2">
-            <div class="text-red-500 font-extrabold text-2xl tracking-wide">MINIFLIX</div>
-            <div class="text-xs text-white/60">by Adedoyin Ekong</div>
+          <div class="flex items-center gap-3">
+      	<div class="text-red-500 font-extrabold text-2xl tracking-wide">MINIFLIX</div>
+     	<div class="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-2 text-base md:text-lg text-white">
+    	  <span class="inline-block w-2 h-2 rounded-full bg-red-500"></span>
+        	  <span class="text-white/70">by</span>
+        	  <span class="font-extrabold tracking-wide">Adedoyin Ekong</span>
+      	</div>
           </div>
     
           <div class="hidden md:flex gap-4 text-sm text-white/80">
@@ -50,9 +54,9 @@ data:
       <section class="px-6 py-10 md:py-14 bg-gradient-to-b from-white/10 to-black">
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1 text-xs text-white/70">
+            <div class="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-2 text-sm md:text-base text-white/80">
               <span class="text-white/80">Built by</span>
-              <span class="text-white font-semibold">Adedoyin Ekong</span>
+              <span class="text-white font-extrabold tracking-wide">Adedoyin Ekong</span>
               <span class="text-white/40">•</span>
               <span class="text-white/70">DevOps / Cloud Engineer</span>
             </div>
@@ -88,7 +92,7 @@ data:
           <div class="bg-white/5 border border-white/10 rounded-2xl p-5 shadow">
             <div class="flex items-center justify-between mb-3">
               <div class="text-sm text-white/70">Live Catalog</div>
-              <div class="text-xs text-white/60">MiniFlix • Adedoyin Ekong</div>
+              <div class="text-sm text-white/80 font-bold">MiniFlix • Adedoyin Ekong</div>
             </div>
             <div id="grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
           </div>
