@@ -2,10 +2,12 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY main.py /app/main.py
+COPY requirements.txt .
 
-RUN pip install flask
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY main.py .
 
 EXPOSE 5000
 
-CMD ["python", "main.py"]
+CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "-b", "0.0.0.0:5000", "main:app"]
