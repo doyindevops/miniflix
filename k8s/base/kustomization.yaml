@@ -7,3 +7,4 @@ resources:
   - catalog-deployment.yaml
   - catalog-service.yaml
   - miniflix-ingress.yaml
+  - catalog-hpa.yaml
