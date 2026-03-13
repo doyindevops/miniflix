@@ -387,12 +387,6 @@ Built by **Adedoyin Ekong**
 DevOps / Cloud Engineer
 Specializing in **Kubernetes, GitOps, and CI/CD pipelines**
 
-Then run:
 
-```bash
-git add README.md
-git commit -m "Rewrite README with proper markdown and project phases"
-git pull --rebase origin main
-git push origin main
-```
+
 
