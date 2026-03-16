@@ -85,7 +85,7 @@ Example API response:
 
 The deployment pipeline follows a **GitOps model**:
 
-```text
+
 ## System Architecture
 
 MiniFlix follows a GitOps-driven cloud-native architecture where application deployments are controlled through Git and automatically synchronized with the Kubernetes cluster.
@@ -131,7 +131,7 @@ Horizontal Pod Autoscaler adjusts the number of pods based on resource usage.
 
 Resilience:
 Kubernetes self-healing automatically recreates failed pods.
-`
+
 
 ---
 
