@@ -21,7 +21,7 @@ Verified endpoints during deployment:
 - API health: `http://13.219.139.230/api/health`
 - API movies: `http://13.219.139.230/api/movies`
 
-These endpoints were active during project validation and are included here as deployment proof.---
+These endpoints were active during project validation and are included here as deployment proof.
 
 # What the App Does
 
@@ -323,6 +323,159 @@ Example files:
 
 ---
 
+## 📊 Phase 5 — Observability & Autoscaling
+
+Phase 5 introduced monitoring and autoscaling capabilities to improve operational visibility and platform resilience.
+
+### Monitoring Stack
+
+The cluster was instrumented with a full monitoring stack:
+
+* Prometheus for metrics collection
+* Grafana for visualization
+* kube-prometheus-stack Helm chart
+
+### Metrics Monitored
+
+The dashboards provide insight into:
+
+* Node CPU utilization
+* Node memory usage
+* Pod CPU usage
+* Pod memory usage
+* Cluster health
+* Container performance metrics
+
+These dashboards make it easier to diagnose performance issues and understand resource consumption across the cluster.
+
+### Horizontal Pod Autoscaling (HPA)
+
+A Kubernetes Horizontal Pod Autoscaler was implemented for the Catalog API.
+
+Configuration:
+
+* Minimum replicas: 2
+* Maximum replicas: 4
+* Target CPU utilization: 70%
+
+The HPA automatically scales the Catalog service when CPU utilization increases, helping the system handle higher traffic loads while maintaining performance.
+
+### Example HPA Status
+
+```bash
+kubectl get hpa -n miniflix
+```
+
+Example output:
+
+```text
+miniflix-catalog-hpa   Deployment/miniflix-catalog   cpu: 2%/70%   2   4   2
+```
+
+### Phase 5 Screenshots
+
+Saved in:
+
+```text
+docs/screenshots/phase-5/
+```
+
+Example screenshots include:
+
+* ArgoCD final application state
+* Horizontal Pod Autoscaler status
+* Running workloads
+* Grafana dashboards
+* Public API verification
+
+## 🧪 Phase 6 — Resilience & Self-Healing
+
+Phase 6 focused on validating Kubernetes self-healing capabilities.
+
+### Chaos Test Performed
+
+A running Catalog pod was manually deleted to simulate an application failure.
+
+```bash
+kubectl delete pod <catalog-pod-name> -n miniflix
+```
+
+### Observed Behavior
+
+Kubernetes automatically:
+
+1. Detected the missing pod
+2. Created a replacement pod
+3. Restored the desired replica count
+
+This demonstrates the self-healing properties of Kubernetes Deployments.
+
+### Service Continuity Verification
+
+After the failure simulation, the application remained operational.
+
+Health check:
+
+```bash
+curl http://13.219.139.230/api/health
+```
+
+Example response:
+
+```json
+{"ok": true}
+```
+
+Movies endpoint:
+
+```bash
+curl http://13.219.139.230/api/movies
+```
+
+The API continued to return valid data, confirming that the service remained available during pod recovery.
+
+### Phase 6 Screenshots
+
+Saved in:
+
+```text
+docs/screenshots/phase-6/
+```
+
+Screenshots demonstrate:
+
+* Pod recovery after deletion
+* API health verification after failure
+* Pods running after recovery
+* UI accessibility after recovery
+* Cluster health metrics in Grafana
+
+## Repository Structure
+
+apps/
+frontend/
+catalog-service/
+
+k8s/
+base/
+overlays/dev/
+
+argocd/
+applications/
+
+docs/
+screenshots/
+phase-1/
+phase-2/
+phase-4/
+phase-5/
+phase-6/
+
+.github/workflows/
+miniflix-cicd.yaml
+
+
+
 # Repository Structure
 
 ```text
@@ -347,28 +500,26 @@ docs/
 ---
 
 # 🚀 DevOps Concepts Demonstrated
-
 This project demonstrates:
 
-- GitOps deployment workflows
-- Kubernetes application orchestration
-- CI/CD container pipelines
-- Docker image lifecycle
-- Kubernetes ingress networking
-- Observability using Prometheus and Grafana
-- Cloud deployment on AWS
-
+* GitOps deployment workflows
+* Kubernetes application orchestration
+* CI/CD container pipelines
+* Docker image lifecycle
+* Kubernetes ingress networking
+* Observability using Prometheus and Grafana
+* Horizontal Pod Autoscaling
+* Resilience and self-healing validation
+* Cloud deployment on AWS
 ---
 
 # Future Improvements
 
 Possible next steps:
 
-- Horizontal Pod Autoscaling
-- Terraform infrastructure provisioning
-- Helm packaging for the application
-- Logging stack (EFK or Loki)
-
+* Terraform infrastructure provisioning
+* Helm packaging for the application
+* Logging stack (EFK or Loki)
 ---
 
 # 👤 Author
